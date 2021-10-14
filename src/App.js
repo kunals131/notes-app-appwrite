@@ -11,8 +11,7 @@ import { Button } from "@mui/material";
 import NotesPage from "./pages/Mynotes/mynotes";
 import { categoriesOfUser } from "./appwrite/database.appwrite";
 import CategoriesPage from "./pages/categories/categories";
-import SpeedDialOption from "./components/SpeedDial/speedDial";
-import { Speed } from "@mui/icons-material";
+
 const Homepage = () => <h1>Hello home</h1>;
 
 
@@ -81,7 +80,7 @@ class App extends React.Component {
             path="/categories"
             render={() =>
               this.state.user !== null ? (
-                <CategoriesPage categories={this.state.categories} />
+                <CategoriesPage categories={this.state.categories} user={this.state.user} />
               ) : (
                 null
               )
@@ -113,9 +112,7 @@ class App extends React.Component {
             }
           />
         </Switch>
-        {
-          (this.state.user!==null) ? <SpeedDialOption/> : null
-        }
+
       </div>
     );
   }

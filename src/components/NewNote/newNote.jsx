@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 
 import Modal from '@mui/material/Modal';
 import { display } from '@mui/system';
-import { editCategory } from '../../appwrite/database.appwrite';
 
 const style = {
   position: 'absolute',
@@ -19,7 +18,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: {
-      xs : '50%',
+      xs : '60%',
       sm : '50%'
   },
   bgcolor: 'background.paper',
@@ -42,38 +41,19 @@ const CardStyle = {
         sm : 340
     },
 }
-export default function CategoryCard(props) {
+export default function NewCard(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [title,setTitle] = React.useState(props.title);
-    const [count,setCount] = React.useState(props.count);
+    const [title,setTitle] = React.useState('');
+    const[body,setBody] = React.useState('');
 
-    const handleChange = ()=>{
-      const data = {
-        "title" : title,
-      }
-      editCategory(props.id,data).then(res=>console.log(res), err=>console.log(err));
-      handleClose();
-      
-    }
+
 
   
   return (
     <div>
-    <Card sx={CardStyle}>
-      <CardActionArea onClick={handleOpen}>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography  variant="body2" color="text.secondary" >
-            {`Notes Count : ${count}`}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-
+    <Button {...props} onClick={handleOpen} variant="contained">{props.children}</Button>
     <Modal
         open={open}
         onClose={handleClose}
@@ -83,7 +63,17 @@ export default function CategoryCard(props) {
         <Box sx={style}>
         
         <TextField label="Title" fullWidth value={title} onChange={(event)=>setTitle(event.target.value)} color="primary" focused />
-        <Button sx ={fieldStyle} onClick={handleChange} variant="contained">Save</Button>
+        <TextField
+          id="outlined-multiline-static"
+          sx = {fieldStyle}
+          label="Note"
+          fullWidth
+          multiline={true}
+          rows={10}
+          defaultValue={body}
+        />
+        <Dropdown title={title}></Dropdown>
+        <Button sx ={fieldStyle} variant="contained">Save</Button>
         </Box>
       </Modal>
     </div>

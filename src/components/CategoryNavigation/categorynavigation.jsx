@@ -3,6 +3,15 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import ActionAreaCard from "../card/card";
+import NotesContainer from "../notesContainer/notesContainer";
+import NewCard from "../NewNote/newNote";
+
+const buttonStyle = {
+  display : 'flex',
+  justifyContent : 'center',
+  marginTop : '1rem',
+  marginBottom : '0.5rem'
+}
 
 export default function ScrollableTabsButtonForce(props) {
   const [value, setValue] = React.useState(0);
@@ -41,15 +50,11 @@ export default function ScrollableTabsButtonForce(props) {
           ))}
         </Tabs>
       </Box>
-
-      <div className="notes-container">
-        <ActionAreaCard
-          title="homeee"
-          content={
-            "loerem121111111111111111111111111111111loerem121111111111111111111111111111111loerem121111111111111111111111111111111loerem121111111111111111111111111111111loerem121111111111111111111111111111111loerem121111111111111111111111111111111loerem121111111111111111111111111111111"
-          }
-        ></ActionAreaCard>
+      <NotesContainer></NotesContainer>
+      <div style={buttonStyle}>
+      <NewCard >Create New Card</NewCard>
       </div>
+
     </div>
   );
 }

@@ -8,10 +8,10 @@ import TextField from '@mui/material/TextField';
 import Dropdown from '../Dropdown/dropdown';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
+import { createCategory } from '../../appwrite/database.appwrite';
 import Modal from '@mui/material/Modal';
 import { display } from '@mui/system';
-import { editCategory } from '../../appwrite/database.appwrite';
+import { refreshPage } from '../../utils/utils';
 
 const style = {
   position: 'absolute',
@@ -19,7 +19,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: {
-      xs : '50%',
+      xs : '60%',
       sm : '50%'
   },
   bgcolor: 'background.paper',
@@ -42,38 +42,34 @@ const CardStyle = {
         sm : 340
     },
 }
-export default function CategoryCard(props) {
+export default function NewCategory(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [title,setTitle] = React.useState(props.title);
-    const [count,setCount] = React.useState(props.count);
+    const [title,setTitle] = React.useState('');
 
-    const handleChange = ()=>{
-      const data = {
-        "title" : title,
-      }
-      editCategory(props.id,data).then(res=>console.log(res), err=>console.log(err));
-      handleClose();
-      
+    const handleSubmit = ()=>{
+        const data = {
+            "title" : title,
+            "user" : props.user, 
+            "count" : 0,
+        }
+        createCategory(data).then(res=>{
+            console.log(res);
+            handleClose();
+            refreshPage();
+        }, err=>console.log(err))
+
     }
+
+
+
+
 
   
   return (
     <div>
-    <Card sx={CardStyle}>
-      <CardActionArea onClick={handleOpen}>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography  variant="body2" color="text.secondary" >
-            {`Notes Count : ${count}`}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-
+    <Button {...props} onClick={handleOpen} variant="contained">{props.children}</Button>
     <Modal
         open={open}
         onClose={handleClose}
@@ -83,7 +79,8 @@ export default function CategoryCard(props) {
         <Box sx={style}>
         
         <TextField label="Title" fullWidth value={title} onChange={(event)=>setTitle(event.target.value)} color="primary" focused />
-        <Button sx ={fieldStyle} onClick={handleChange} variant="contained">Save</Button>
+
+        <Button sx ={fieldStyle} onClick={handleSubmit} variant="contained">Save</Button>
         </Box>
       </Modal>
     </div>
