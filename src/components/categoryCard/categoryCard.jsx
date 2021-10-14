@@ -18,7 +18,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: {
-      xs : '60%',
+      xs : '50%',
       sm : '50%'
   },
   bgcolor: 'background.paper',
@@ -41,15 +41,15 @@ const CardStyle = {
         sm : 340
     },
 }
-export default function ActionAreaCard(props) {
+export default function CategoryCard(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [title,setTitle] = React.useState(props.title);
-    const[body,setBody] = React.useState(props.content);
+    const [count,setCount] = React.useState(props.count);
 
     const handleChange = ()=>{
-
+        console.log('button clicked')
     }
 
   
@@ -62,7 +62,7 @@ export default function ActionAreaCard(props) {
             {title}
           </Typography>
           <Typography  variant="body2" color="text.secondary" >
-            {body}
+            {`Notes Count : ${count}`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -77,17 +77,7 @@ export default function ActionAreaCard(props) {
         <Box sx={style}>
         
         <TextField label="Title" fullWidth value={title} onChange={(event)=>setTitle(event.target.value)} color="primary" focused />
-        <TextField
-          id="outlined-multiline-static"
-          sx = {fieldStyle}
-          label="Note"
-          fullWidth
-          multiline={true}
-          rows={10}
-          defaultValue={body}
-        />
-        <Dropdown title={title}></Dropdown>
-        <Button sx ={fieldStyle} variant="contained">Save</Button>
+        <Button sx ={fieldStyle} onClick={handleChange} variant="contained">Save</Button>
         </Box>
       </Modal>
     </div>

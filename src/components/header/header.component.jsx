@@ -25,12 +25,12 @@ const Header = (props) => (
          <Link to= '/' className='link'>My Notes</Link>
         </div>
         <div className="header__options__option">
-         <Link to= '/' className='link'>Categories</Link>
+         <Link to= '/categories' className='link'>Categories</Link>
         </div>
         {
             (props.user!==null) ?(
-        <div className="header__options__option">
-         <Link onClick={handleLogout} className='link'>Logout</Link>
+        <div className="header__options__option logout">
+         <span onClick={handleLogout} className='link'>Logout</span>
         </div>
             ): null
         }

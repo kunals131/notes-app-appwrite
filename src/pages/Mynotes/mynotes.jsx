@@ -1,22 +1,17 @@
 import React from 'react' 
-
+import './mynotes.scss'
 import ScrollableTabsButtonForce from '../../components/CategoryNavigation/categorynavigation';
 
 
-class NotesPage extends React.Component {
+function NotesPage(props) {
 
-    state = {
-        Categories : ['tabs 1' , 'tabs 2', 'tabs 3', 'tabs 4'],
-        Posts : ['']
-    }
+    return(
+        <div className="home">
+            <ScrollableTabsButtonForce categories={props.categories}/>
+        </div>
+    );
 
-    render() {
-      return(
-          <div className="home">
-              <ScrollableTabsButtonForce/>
-          </div>
-      );
-    }
 }
+
 
 export default NotesPage

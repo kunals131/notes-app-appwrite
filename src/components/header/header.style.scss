@@ -10,16 +10,17 @@
 
     &__options {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: 1fr 1fr auto;
         grid-gap: 1.2rem;
 
         &__option {
             font-size: 1rem;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.1s ease-in-out;
             font-weight: 500;
             
             &:hover {
-                font-size: 1.03rem;
+                padding-bottom : 3px;
+                border-bottom: 2px royalblue solid ;
             }
         }
     }
@@ -32,4 +33,9 @@
 .link {
     text-decoration: none;
     color: black;
+}
+
+.logout {
+    cursor: pointer;
+    font-size: 1.02rem;
 }

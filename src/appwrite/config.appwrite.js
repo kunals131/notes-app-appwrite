@@ -14,6 +14,8 @@ const loginUser = (email,password)=> {
 
 
 
+
+
 const currentUser = () =>{
     return sdk.account.get();
 }
