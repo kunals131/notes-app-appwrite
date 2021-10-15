@@ -3,14 +3,19 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { editCategory, editNote } from '../../appwrite/database.appwrite';
 
 export default function Dropdown(props) {
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState('no-category');
 
   const handleChange = (event) => {
     setCategory(event.target.value);
+    console.log(props.categories)
     console.log("category for post" + props.title + "changed to " + event.target.value);
+    editNote(props.noteId,{"category" : event.target.value}).then(res=>console.log(res), err=>alert(err.message))
   };
+
+  
 
   const styles = {
     marginTop : '1rem',
@@ -40,9 +45,12 @@ export default function Dropdown(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Category -1 </MenuItem>
-          <MenuItem value={21}>Category -2</MenuItem>
-          <MenuItem value={22}>Category -3</MenuItem>
+          {
+            props.categories.map(category=>(
+              <MenuItem key={[category['$id']]} value={category['$id']}>{category['title']}</MenuItem>
+            ))
+          }
+
         </Select>
       </FormControl>
     </div>

@@ -13,5 +13,28 @@ const editCategory = (id,data) =>{
     return sdk.database.updateDocument('6166c7e8106b3', id,data);
 }
 
+const getAllNotes = (userId) =>{
+    return sdk.database.listDocuments('6166c81843a9e',[`user=${userId}`])
+}
 
-export {categoriesOfUser, createCategory, editCategory};
+const createNote = (data)=>{
+    return sdk.database.createDocument('6166c81843a9e',data,['*'], ['*'])
+}
+
+const editNote = (id,data)=>{
+    return sdk.database.updateDocument('6166c81843a9e',id,data)
+}
+
+const getNotesViaCategory = (userId, categoryId) =>{
+    return sdk.database.listDocuments('6166c81843a9e',[`user=${userId}`, `category=${categoryId}`])
+}
+
+export const deleteNote = (id)=>{
+    return sdk.database.deleteDocument('6166c81843a9e', id);
+}
+
+export const deleteCategory = (id)=>{
+    return sdk.database.deleteDocument('6166c7e8106b3',id);
+}
+
+export {categoriesOfUser, createCategory, editCategory, getAllNotes, getNotesViaCategory,createNote, editNote};

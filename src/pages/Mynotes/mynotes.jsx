@@ -5,9 +5,10 @@ import ScrollableTabsButtonForce from '../../components/CategoryNavigation/categ
 
 function NotesPage(props) {
 
+
     return(
         <div className="home">
-            <ScrollableTabsButtonForce categories={props.categories}/>
+            <ScrollableTabsButtonForce categories={props.categories} user={props.user} notes={props.notes} />
         </div>
     );
 

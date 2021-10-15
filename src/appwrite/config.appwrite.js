@@ -12,6 +12,9 @@ const loginUser = (email,password)=> {
     return sdk.account.createSession(email,password);
 }
 
+export const createUser = (email,password,name)=>{
+    return sdk.account.create(email,password,name='User');
+}
 
 
 

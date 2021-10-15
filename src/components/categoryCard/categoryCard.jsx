@@ -11,7 +11,9 @@ import Button from '@mui/material/Button';
 
 import Modal from '@mui/material/Modal';
 import { display } from '@mui/system';
-import { editCategory } from '../../appwrite/database.appwrite';
+import './categoryCard.scss'
+import { deleteCategory, editCategory } from '../../appwrite/database.appwrite';
+import { refreshPage } from '../../utils/utils';
 
 const style = {
   position: 'absolute',
@@ -55,7 +57,14 @@ export default function CategoryCard(props) {
       }
       editCategory(props.id,data).then(res=>console.log(res), err=>console.log(err));
       handleClose();
-      
+    }
+
+    const handleDelete = ()=>{
+      deleteCategory(props.id).then(res=>{
+        console.log(res);
+        handleClose();
+        refreshPage();
+      },err=>alert(err))
     }
 
   
@@ -83,7 +92,10 @@ export default function CategoryCard(props) {
         <Box sx={style}>
         
         <TextField label="Title" fullWidth value={title} onChange={(event)=>setTitle(event.target.value)} color="primary" focused />
+        <div>
         <Button sx ={fieldStyle} onClick={handleChange} variant="contained">Save</Button>
+        <Button sx ={fieldStyle} onClick={handleDelete} variant="outlined" color="error">Delete</Button>
+        </div>
         </Box>
       </Modal>
     </div>

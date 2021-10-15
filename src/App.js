@@ -11,9 +11,9 @@ import { Button } from "@mui/material";
 import NotesPage from "./pages/Mynotes/mynotes";
 import { categoriesOfUser } from "./appwrite/database.appwrite";
 import CategoriesPage from "./pages/categories/categories";
+import { getAllNotes } from "./appwrite/database.appwrite";
 
 const Homepage = () => <h1>Hello home</h1>;
-
 
 const Signin = () => <h1>Signin</h1>;
 
@@ -42,6 +42,17 @@ class App extends React.Component {
             () => console.log(this.state.categories)
           );
         });
+        getAllNotes(response["$id"]).then(
+          (res) =>
+            this.setState(
+              {
+                ...this.state,
+                notes: res["documents"],
+              },
+              () => console.log(this.state.notes)
+            ),
+          (err) => console.log(err)
+        );
         this.setState(
           {
             ...this.state,
@@ -73,17 +84,21 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header user={this.state.user}></Header>
+        {
+          (this.state.user!==null)?
+        (<Header user={this.state.user}></Header>) : null
+  }
         <Switch>
           <Route
             exact
             path="/categories"
             render={() =>
               this.state.user !== null ? (
-                <CategoriesPage categories={this.state.categories} user={this.state.user} />
-              ) : (
-                null
-              )
+                <CategoriesPage
+                  categories={this.state.categories}
+                  user={this.state.user}
+                />
+              ) : null
             }
           />
           <Route
@@ -105,14 +120,17 @@ class App extends React.Component {
             path="/"
             render={() =>
               this.state.user !== null ? (
-                <NotesPage categories={this.state.categories} />
+                <NotesPage
+                  categories={this.state.categories}
+                  user={this.state.user}
+                  notes={this.state.notes}
+                />
               ) : (
                 <Redirect to="/signin" />
               )
             }
           />
         </Switch>
-
       </div>
     );
   }
