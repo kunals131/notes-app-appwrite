@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {loginUser} from '../appwrite/config.appwrite'
 import { refreshPage } from '../utils/utils';
 import { useHistory } from 'react-router';
+import { ReactComponent as Logo} from '../assets/icon.svg'
 
 
 function Copyright(props) {
@@ -32,7 +33,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-
+const iconstyling = {
+  width : '70%'
+}
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -72,9 +75,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Logo style={iconstyling}></Logo>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>

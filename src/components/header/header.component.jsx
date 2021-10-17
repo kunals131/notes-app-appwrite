@@ -1,7 +1,7 @@
 import "./header.style.scss";
 
 import {Link} from 'react-router-dom'
-import { ReactComponent as Logo} from '../../assets/main.svg'
+import { ReactComponent as Logo} from '../../assets/logo.svg'
 import { logoutUser } from "../../appwrite/config.appwrite";
 import { refreshPage } from "../../utils/utils";
 
@@ -17,9 +17,10 @@ const Header = (props) => (
 
   <div className="header">
     <div className="header__container">
-        <Link className='Logo-container' to='/'>
-            <Logo className='Logo'></Logo>
+      <Link className='logo-container'>
+      <Logo className='logo'></Logo>
         </Link>
+        
       <div className="header__options">
         <div className="header__options__option">
          <Link to= '/' className='link'>My Notes</Link>
