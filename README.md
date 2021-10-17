@@ -2,7 +2,7 @@
  ![React Logo](./ReadmeResources/file.svg)
 
 # 🔷About the app:
-#### Its a notes app in which user can signin (Powered by appwrite's authentication) or signup and create notes with different categories.
+#### Its a notes app in which user can signin (Powered by appwrite's authentication) or signup and create notes with different categories. It store notes in appwrite's database and uses appwrite's API to create/edit and delete notes.
  ![Login Page](./ReadmeResources/loginscreenshot.jpg)
  ![Inside the app](./ReadmeResources/inside.jpg)
 
