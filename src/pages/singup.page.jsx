@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
+import { ReactComponent as Logo} from '../assets/icon.svg'
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -14,6 +16,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createUser, loginUser } from '../appwrite/config.appwrite';
 import { refreshPage } from '../utils/utils';
+
+const iconstyling = {
+  width : '70%'
+}
+
 
 function Copyright(props) {
   return (
@@ -65,9 +72,8 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+           <Logo style={iconstyling}></Logo>
+
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>

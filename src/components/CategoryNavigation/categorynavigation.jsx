@@ -70,7 +70,7 @@ export default function ScrollableTabsButtonForce(props) {
       </Box>
       <NotesContainer {...props} notes= {(!changed)?props.notes:notes}></NotesContainer>
       <div style={buttonStyle}>
-      <NewCard category={value} user = {props.user}>Create New Card</NewCard>
+      <NewCard category={value} user = {props.user}>Create New Note</NewCard>
       </div>
     </div>
   );

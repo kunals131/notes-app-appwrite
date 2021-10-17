@@ -76,9 +76,7 @@ export default function CategoryCard(props) {
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography  variant="body2" color="text.secondary" >
-            {`Notes Count : ${count}`}
-          </Typography>
+
         </CardContent>
       </CardActionArea>
     </Card>
