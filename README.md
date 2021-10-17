@@ -1,5 +1,5 @@
 # **📑Notes App with React and Appwrite**
- ![React Logo](./file.svg)
+ ![React Logo](./ReadmeResources/file.svg)
 
 # 🔷About the app:
 #### Its a notes app in which user can signin (Powered by appwrite's authentication) or signup and create notes with different categories.
